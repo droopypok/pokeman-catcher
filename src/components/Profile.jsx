@@ -8,6 +8,9 @@ const Profile = () => {
 
   const nameRef = useRef(""); // used to store name data first
 
+  const splitTypes = selectType.toString();
+  console.log(splitTypes);
+
   // name Fn
   const username = (e) => {
     e.preventDefault();
@@ -48,6 +51,40 @@ const Profile = () => {
       //to store types
       return setSelectType(storedType);
     }
+  };
+
+  const handleSubmit = async () => {
+    const res = await fetch(
+      "https://api.airtable.com/v0/appilxsJRs69yeTn9/Table%201",
+      {
+        method: "POST",
+        headers: {
+          Authorization:
+            "Bearer patxD0v1jlSvjLqBV.f5a593a9bcdb6d61fb435b81e34641d5d7c5b1b73f10c0ab0054a00606e44fe0",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          records: [
+            {
+              fields: {
+                Name: name,
+                Pic: ppSrc,
+                Region: region,
+                Type: splitTypes,
+              },
+            },
+          ],
+        }),
+      }
+    );
+    if (res.ok) {
+      console.log("Successfully inputted data!");
+    }
+  };
+
+  const handleSubmitButton = (e) => {
+    e.preventDefault();
+    handleSubmit();
   };
 
   return (
@@ -127,6 +164,7 @@ const Profile = () => {
         <img src="../pokemonTypes/Steel.png" alt="steel" />
         <img src="../pokemonTypes/Fairy.png" alt="fairy" />
       </div>
+      <button onClick={handleSubmitButton}>Create Profile</button>
     </div>
   );
 };
