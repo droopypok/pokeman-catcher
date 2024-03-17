@@ -4,11 +4,6 @@ import ProfileInfo from "./ProfileInfo";
 
 const ExistingUserSelect = (props) => {
   const [selectedUser, setSelectedUser] = useState(0);
-
-  const removeModal = () => {
-    return props.getModal(false);
-  };
-
   const profileID = document.getElementById("profileSelect");
 
   return (
@@ -30,10 +25,14 @@ const ExistingUserSelect = (props) => {
           })}
         </select>
       </label>
-      <ProfileInfo
-        selectedUser={selectedUser}
-        userProfile={props.userProfile}
-      ></ProfileInfo>
+      {props.profileDoneLoading && (
+        <ProfileInfo
+          selectedUser={selectedUser}
+          userProfile={props.userProfile}
+          getUserType={props.getUserType}
+          profileDoneLoading={props.profileDoneLoading}
+        ></ProfileInfo>
+      )}
     </div>
   );
 };

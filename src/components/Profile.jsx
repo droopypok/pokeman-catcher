@@ -4,7 +4,7 @@ const Profile = () => {
   const [ppSrc, setPpSrc] = useState("../ProfilePictures/AshPP.png");
   const [name, setName] = useState(""); // used for displaying name data
   const [region, setRegion] = useState("");
-  const [selectType, setSelectType] = useState([]);
+  const [selectType, setSelectType] = useState("");
 
   const nameRef = useRef(""); // used to store name data first
 
@@ -34,22 +34,8 @@ const Profile = () => {
 
   // type select Fn for img - WORKING
   const handleTypeSelect = (e) => {
-    const storedType = [...selectType, e.target.alt];
-
-    if (
-      // to delete types if double clicked
-      selectType.includes(e.target.alt) &&
-      selectType.includes !== undefined
-    ) {
-      const index = selectType.findIndex((item) => {
-        item === e.target.alt;
-      });
-      const tempArr = [...selectType];
-      tempArr.splice(index, 1);
-      setSelectType(tempArr);
-    } else if (e.target.alt !== undefined) {
-      //to store types
-      return setSelectType(storedType);
+    if (e.target.alt !== undefined) {
+      return setSelectType(e.target.alt);
     }
   };
 
@@ -143,7 +129,7 @@ const Profile = () => {
       {/* selecting pokeMAN types currently working // Might change to buttons to press instead for UI */}
       <h3>
         Select your preferred PokeMAN type: <br />
-        <span>{selectType.join(" ")}</span>
+        <span>{selectType}</span>
       </h3>
 
       <div onClick={handleTypeSelect}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PrevMatch from "./PrevMatch";
 import UserSelectModal from "./UserSelectModal";
 import ExistingUserSelect from "./ExistingUserSelect";
@@ -17,13 +17,15 @@ const Display = () => {
 
   const [showModal, setShowModal] = useState(true);
   const [existingUser, setExistingUser] = useState();
+  const [selectedType, setSelectedType] = useState("");
+
+  const [test, setTest] = useState([]);
+  const [randomPokemon, setRandomPokemon] = useState("");
 
   // random ID for all pokemon list
   const randomPokemonID = Math.floor(Math.random() * 1025);
 
   // Function for like button
-  // the reason why we use unshift - so it pushes it infront instead of behind
-  // COMPLETED
   const match = () => {
     const matchedData = { pokemonName, pokemonSprite, pokemonType };
     matchedPokemon.unshift(matchedData);
@@ -36,26 +38,21 @@ const Display = () => {
       console.log(matchedPokemon);
     }
 
-    getPokemon();
+    getPokemonType();
   };
 
   // Function for NOPE button
-  // COMPLETED
   const rejected = () => {
     console.log("This pokemon is REJECTED");
-    getPokemon();
+    getPokemonType();
   };
 
-  //Getting a new pokemon from API
-  //COMPLETED
+  // Getting a new pokemon from API
   const getPokemon = async (signal) => {
     try {
-      const res = await fetch(
-        "https://pokeapi.co/api/v2/pokemon/" + randomPokemonID + "/",
-        {
-          signal,
-        }
-      );
+      const res = await fetch(randomPokemon, {
+        signal,
+      });
       if (res.ok) {
         const data = await res.json();
 
@@ -76,6 +73,69 @@ const Display = () => {
       }
     }
   };
+
+  const getPokemonType = async (signal) => {
+    try {
+      const res = await fetch(
+        "https://pokeapi.co/api/v2/type/" + selectedType,
+        {
+          signal,
+        }
+      );
+      if (res.ok) {
+        const data = await res.json();
+        setTest(data);
+        const randomLength = Math.floor(Math.random() * data.pokemon.length); //pokemon whole array
+        setRandomPokemon(data.pokemon[randomLength].pokemon.url);
+        console.log(data.pokemon[randomLength].pokemon.name);
+
+        // setPokemonType(types.join(" ")); // this is so that you can join it in an array
+      }
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        console.log(error.message);
+      }
+    }
+  };
+
+  console.log(randomPokemon);
+  const getUserType = (type) => {
+    return setSelectedType(type);
+  };
+
+  // const getPokemon = async (signal) => {
+  //   try {
+  //     const res = await fetch("https://pokeapi.co/api/v2/type/", {
+  //       signal,
+  //     });
+  //     if (res.ok) {
+  //       const data = await res.json();
+  //       setApiDoneLoading(true);
+  //       const fetchTypes = data.types.map((items) => {
+  //         return items.type.name;
+  //       });
+
+  //       if (profileDoneLoading) {
+  //         console.log(profileDoneLoading);
+  //         if (selectedType.includes(fetchTypes)) {
+  //           setPokemonMatch(data); //pokemon whole array
+  //           setPokemonSprite(data.sprites.front_default); //pokemon sprite front
+  //           setPokemonName(data.name);
+  //           setPokemonType(fetchTypes.join(" "));
+  //         } else {
+  //           console.log("i am here");
+  //           console.log(`this is the fetchTypes  ${fetchTypes}`);
+  //         }
+  //       }
+
+  //       // setPokemonType(types.join(" ")); // this is so that you can join it in an array
+  //     }
+  //   } catch (error) {
+  //     if (error.name !== "AbortError") {
+  //       console.log(error.message);
+  //     }
+  //   }
+  // };
 
   //getting user profile
   const getProfileInfo = async () => {
@@ -104,10 +164,18 @@ const Display = () => {
 
   // EZPZ ON-LOAD completed
   useEffect(() => {
-    getPokemon();
     getProfileInfo();
+
     setExistingUser(sessionStorage.getItem("isUser"));
   }, []);
+
+  useEffect(() => {
+    getPokemonType();
+  }, [selectedType]);
+
+  useEffect(() => {
+    getPokemon();
+  }, [randomPokemon]);
 
   return (
     <div className={styles.container}>
@@ -119,10 +187,14 @@ const Display = () => {
       )}
 
       {/* this is the basic display for the match screen */}
-      {profileDoneLoading && apiDoneLoading && (
+      {profileDoneLoading && (
         <div className={styles.profileInfo}>
           <h3>Welcome User</h3>
-          <ExistingUserSelect userProfile={userProfile}></ExistingUserSelect>
+          <ExistingUserSelect
+            userProfile={userProfile}
+            getUserType={getUserType}
+            profileDoneLoading={profileDoneLoading}
+          ></ExistingUserSelect>
         </div>
       )}
 
