@@ -29,13 +29,27 @@ const Profile = () => {
     return setRegion(region.value);
   };
 
-  // type select Fn
-  const handleTypeSelect = () => {
-    const type = document.getElementById("typeSelect");
-    const storedType = [...selectType, type.value];
-    setSelectType(storedType);
+  // type select Fn for img
+  const handleTypeSelect = (e) => {
+    const storedType = [...selectType, e.target.alt];
+    if (
+      selectType.includes(e.target.alt) &&
+      selectType.includes !== undefined
+    ) {
+      alert("You have already selected this type you idiot");
+    } else if (e.target.alt !== undefined) {
+      setSelectType(storedType);
+    }
     console.log(selectType.join(" "));
   };
+
+  // // type select Fn for select
+  // const handleTypeSelect = () => {
+  //   const type = document.getElementById("typeSelect");
+  //   const storedType = [...selectType, type.value];
+  //   setSelectType(storedType);
+  //   console.log(selectType.join(" "));
+  // };
 
   return (
     <div>
@@ -90,8 +104,32 @@ const Profile = () => {
 
       {/* selecting pokeMAN types currently working // Might change to buttons to press instead for UI */}
       {/* need to add the ability to remove types that selected wrongly  */}
-      <h3>Select your preferred PokeMAN type: </h3>
-      <form>
+      <h3>
+        Select your preferred PokeMAN type: <span>{selectType}</span>
+      </h3>
+
+      <div id="dick" onClick={handleTypeSelect}>
+        <img src="../pokemonTypes/Normal.png" alt="normal" />
+        <img src="../pokemonTypes/Fire.png" alt="fire" />
+        <img src="../pokemonTypes/Water.png" alt="water" />
+        <img src="../pokemonTypes/Electric.png" alt="electric" />
+        <img src="../pokemonTypes/Grass.png" alt="grass" />
+        <img src="../pokemonTypes/Ice.png" alt="ice" />
+        <img src="../pokemonTypes/Fighting.png" alt="fighting" />
+        <img src="../pokemonTypes/Poison.png" alt="poison" />
+        <img src="../pokemonTypes/Ground.png" alt="ground" />
+        <img src="../pokemonTypes/Flying.png" alt="flying" />
+        <img src="../pokemonTypes/Psychic.png" alt="psychic" />
+        <img src="../pokemonTypes/Bug.png" alt="bug" />
+        <img src="../pokemonTypes/Rock.png" alt="rock" />
+        <img src="../pokemonTypes/Ghost.png" alt="ghost" />
+        <img src="../pokemonTypes/Dragon.png" alt="dragon" />
+        <img src="../pokemonTypes/Dark.png" alt="dark" />
+        <img src="../pokemonTypes/Steel.png" alt="steel" />
+        <img src="../pokemonTypes/Fairy.png" alt="fairy" />
+      </div>
+
+      {/* <form>
         <h3>{selectType.join(" ")}</h3>
         <select id="typeSelect" onChange={handleTypeSelect}>
           <option value="Normal">Normal</option>
@@ -113,7 +151,7 @@ const Profile = () => {
           <option value="Steel">Steel</option>
           <option value="Fairy">Fairy</option>
         </select>
-      </form>
+      </form> */}
     </div>
   );
 };
