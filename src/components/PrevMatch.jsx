@@ -4,7 +4,6 @@ const PrevMatch = (props) => {
   return (
     <div>
       {/* img of liked pokemons to be taken from Display // LIFTING STATE */}
-
       <img src={props.matchedPokemon.pokemonSprite} alt="" />
       <p>{props.matchedPokemon.pokemonName}</p>
       <p>{props.matchedPokemon.pokemonType}</p>

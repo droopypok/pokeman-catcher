@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 const Profile = () => {
   const [ppSrc, setPpSrc] = useState("../ProfilePictures/AshPP.png");
@@ -49,17 +49,6 @@ const Profile = () => {
       return setSelectType(storedType);
     }
   };
-
-  useEffect(() => {
-    console.log("working");
-  }, [selectType]);
-  // // type select Fn for select
-  // const handleTypeSelect = () => {
-  //   const type = document.getElementById("typeSelect");
-  //   const storedType = [...selectType, type.value];
-  //   setSelectType(storedType);
-  //   console.log(selectType.join(" "));
-  // };
 
   return (
     <div>
@@ -113,11 +102,10 @@ const Profile = () => {
       </form>
 
       {/* selecting pokeMAN types currently working // Might change to buttons to press instead for UI */}
-      {/* need to add the ability to remove types that selected wrongly  */}
       <h3>
-        Select your preferred PokeMAN type: <span>{selectType}</span>
+        Select your preferred PokeMAN type: <br />
+        <span>{selectType.join(" ")}</span>
       </h3>
-      {console.log(selectType)}
 
       <div onClick={handleTypeSelect}>
         <img src="../pokemonTypes/Normal.png" alt="normal" />
@@ -139,30 +127,6 @@ const Profile = () => {
         <img src="../pokemonTypes/Steel.png" alt="steel" />
         <img src="../pokemonTypes/Fairy.png" alt="fairy" />
       </div>
-
-      {/* <form>
-        <h3>{selectType.join(" ")}</h3>
-        <select id="typeSelect" onChange={handleTypeSelect}>
-          <option value="Normal">Normal</option>
-          <option value="Fire">Fire</option>
-          <option value="Water">Water</option>
-          <option value="Electric">Electric</option>
-          <option value="Grass">Grass</option>
-          <option value="Ice">Ice</option>
-          <option value="Fighting">Fighting</option>
-          <option value="Poison">Poison</option>
-          <option value="Ground">Ground</option>
-          <option value="Flying">Flying</option>
-          <option value="Psychic">Psychic</option>
-          <option value="Bug">Bug</option>
-          <option value="Rock">Rock</option>
-          <option value="Ghost">Ghost</option>
-          <option value="Dragon">Dragon</option>
-          <option value="Dark">Dark</option>
-          <option value="Steel">Steel</option>
-          <option value="Fairy">Fairy</option>
-        </select>
-      </form> */}
     </div>
   );
 };

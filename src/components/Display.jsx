@@ -109,8 +109,6 @@ const Display = () => {
       {matchedPokemon.map((item, idx) => {
         return <PrevMatch matchedPokemon={item} key={idx}></PrevMatch>;
       })}
-
-      <Profile></Profile>
     </>
   );
 };
