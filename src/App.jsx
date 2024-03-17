@@ -10,8 +10,8 @@ function App() {
       <Suspense fallback={<h1>loading...</h1>}>
         <NavBar></NavBar>
         <Routes>
-          <Route path="/" element={<Navigate replace to="/main" />}></Route>
-          <Route path="main" element={<Display />}></Route>
+          {/* <Route path="/" element={<Navigate replace to="/main" />}></Route> */}
+          <Route path="/" element={<Display />}></Route>
           <Route path="profile" element={<Profile />}></Route>
         </Routes>
       </Suspense>

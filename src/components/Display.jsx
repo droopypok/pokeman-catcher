@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import PrevMatch from "./PrevMatch";
 import Profile from "./Profile";
+import ProfileInfo from "./ProfileInfo";
+import UserSelectModal from "./UserSelectModal";
 
 const Display = () => {
   // states
@@ -9,6 +11,7 @@ const Display = () => {
   const [pokemonSprite, setPokemonSprite] = useState([]);
   const [pokemonType, setPokemonType] = useState([]);
   const [matchedPokemon, setMatchedPokemon] = useState([]);
+  const [showModal, setShowModal] = useState(true);
 
   // random ID for all pokemon list
   const randomPokemonID = Math.floor(Math.random() * 1025);
@@ -76,6 +79,12 @@ const Display = () => {
   return (
     <>
       {/* this is the basic display for the match screen */}
+      <ProfileInfo></ProfileInfo>
+
+      {showModal && (
+        <UserSelectModal setShowModal={setShowModal}></UserSelectModal>
+      )}
+
       <h3>POKEMON MATCH</h3>
       <img src={pokemonSprite} />
       <p>{pokemonName}</p>

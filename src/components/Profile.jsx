@@ -53,6 +53,7 @@ const Profile = () => {
     }
   };
 
+  //fetch POST API from AirTable to SUBMIT new profile -- WORKING
   const handleSubmit = async () => {
     const res = await fetch(
       "https://api.airtable.com/v0/appilxsJRs69yeTn9/Table%201",
@@ -67,10 +68,10 @@ const Profile = () => {
           records: [
             {
               fields: {
-                Name: name,
-                Pic: ppSrc,
-                Region: region,
-                Type: splitTypes,
+                name: name,
+                pic: ppSrc,
+                region: region,
+                type: splitTypes,
               },
             },
           ],
@@ -82,6 +83,7 @@ const Profile = () => {
     }
   };
 
+  // submit button to submit everything to airtable
   const handleSubmitButton = (e) => {
     e.preventDefault();
     handleSubmit();

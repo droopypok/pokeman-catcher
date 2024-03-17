@@ -6,7 +6,7 @@ const NavBar = () => {
     <header className="">
       <ul>
         <li>
-          <NavLink to="/main">Catch em' All!</NavLink>
+          <NavLink to="/">Catch em' All!</NavLink>
         </li>
         <li>
           <NavLink to="/Profile">Profile</NavLink>
