@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const Profile = () => {
   const [ppSrc, setPpSrc] = useState("../ProfilePictures/AshPP.png");
@@ -29,20 +29,30 @@ const Profile = () => {
     return setRegion(region.value);
   };
 
-  // type select Fn for img
+  // type select Fn for img - WORKING
   const handleTypeSelect = (e) => {
     const storedType = [...selectType, e.target.alt];
+
     if (
+      // to delete types if double clicked
       selectType.includes(e.target.alt) &&
       selectType.includes !== undefined
     ) {
-      alert("You have already selected this type you idiot");
+      const index = selectType.findIndex((item) => {
+        item === e.target.alt;
+      });
+      const tempArr = [...selectType];
+      tempArr.splice(index, 1);
+      setSelectType(tempArr);
     } else if (e.target.alt !== undefined) {
-      setSelectType(storedType);
+      //to store types
+      return setSelectType(storedType);
     }
-    console.log(selectType.join(" "));
   };
 
+  useEffect(() => {
+    console.log("working");
+  }, [selectType]);
   // // type select Fn for select
   // const handleTypeSelect = () => {
   //   const type = document.getElementById("typeSelect");
@@ -107,8 +117,9 @@ const Profile = () => {
       <h3>
         Select your preferred PokeMAN type: <span>{selectType}</span>
       </h3>
+      {console.log(selectType)}
 
-      <div id="dick" onClick={handleTypeSelect}>
+      <div onClick={handleTypeSelect}>
         <img src="../pokemonTypes/Normal.png" alt="normal" />
         <img src="../pokemonTypes/Fire.png" alt="fire" />
         <img src="../pokemonTypes/Water.png" alt="water" />
