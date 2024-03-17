@@ -1,0 +1,4 @@
+.profileInfoContainer {
+  display: flex;
+  flex-direction: row;
+}

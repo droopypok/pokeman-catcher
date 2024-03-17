@@ -2,6 +2,29 @@
   margin: 30px;
 }
 
+.topContainer {
+  display: flex;
+  height: 60vh;
+  justify-content: start;
+  gap: 400px;
+}
 .profileInfo {
-  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: #463f3a;
+  color: #f4f3ee;
+  padding: 10px;
+  align-items: center;
+  text-align: center;
+  border-radius: 40px;
+}
+
+.prevMatchContainer {
+  margin: 10px;
+}
+.prevMatch {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }

@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [ppSrc, setPpSrc] = useState("../ProfilePictures/AshPP.png");
   const [name, setName] = useState(""); // used for displaying name data
-  const [region, setRegion] = useState("");
+  const [region, setRegion] = useState("Kanto");
   const [selectType, setSelectType] = useState("");
 
   const nameRef = useRef(""); // used to store name data first
@@ -69,10 +70,16 @@ const Profile = () => {
     }
   };
 
+  const navigate = useNavigate();
   // submit button to submit everything to airtable
   const handleSubmitButton = (e) => {
-    e.preventDefault();
-    handleSubmit();
+    if (name && ppSrc && region && splitTypes) {
+      e.preventDefault();
+      handleSubmit();
+      navigate("/");
+    } else {
+      alert("You are missing a required field");
+    }
   };
 
   return (
@@ -80,7 +87,12 @@ const Profile = () => {
       {/* to enter username -- WORKING */}
       <h3>Enter your name</h3>
       <form onSubmit={username}>
-        <input type="text" ref={nameRef} placeholder="Enter your name" />
+        <input
+          type="text"
+          ref={nameRef}
+          placeholder="Enter your name"
+          required
+        />
         <button type="submit">Submit</button>
       </form>
 

@@ -1,15 +1,20 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import styles from "./NavBar.module.css";
 
 const NavBar = () => {
   return (
     <header className="">
-      <ul>
+      <ul className={styles.navBar}>
         <li>
-          <NavLink to="/">Catch em' All!</NavLink>
+          <NavLink className={styles.link} to="/">
+            Catch em' All!
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/Profile">Create New Profile</NavLink>
+          <NavLink className={styles.link} to="/Profile">
+            Create New Profile
+          </NavLink>
         </li>
       </ul>
     </header>

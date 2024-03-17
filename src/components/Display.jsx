@@ -29,13 +29,10 @@ const Display = () => {
   const match = () => {
     const matchedData = { pokemonName, pokemonSprite, pokemonType };
     matchedPokemon.unshift(matchedData);
-    console.log(matchedData);
 
     // after it hits the length of 6, it will start removing the last recent match
     if (matchedPokemon.length === 6) {
-      console.log("this if statement is running");
       matchedPokemon.splice(5, 1);
-      console.log(matchedPokemon);
     }
 
     getPokemonType();
@@ -43,7 +40,6 @@ const Display = () => {
 
   // Function for NOPE button
   const rejected = () => {
-    console.log("This pokemon is REJECTED");
     getPokemonType();
   };
 
@@ -87,7 +83,6 @@ const Display = () => {
         setTest(data);
         const randomLength = Math.floor(Math.random() * data.pokemon.length); //pokemon whole array
         setRandomPokemon(data.pokemon[randomLength].pokemon.url);
-        console.log(data.pokemon[randomLength].pokemon.name);
 
         // setPokemonType(types.join(" ")); // this is so that you can join it in an array
       }
@@ -98,44 +93,9 @@ const Display = () => {
     }
   };
 
-  console.log(randomPokemon);
   const getUserType = (type) => {
     return setSelectedType(type);
   };
-
-  // const getPokemon = async (signal) => {
-  //   try {
-  //     const res = await fetch("https://pokeapi.co/api/v2/type/", {
-  //       signal,
-  //     });
-  //     if (res.ok) {
-  //       const data = await res.json();
-  //       setApiDoneLoading(true);
-  //       const fetchTypes = data.types.map((items) => {
-  //         return items.type.name;
-  //       });
-
-  //       if (profileDoneLoading) {
-  //         console.log(profileDoneLoading);
-  //         if (selectedType.includes(fetchTypes)) {
-  //           setPokemonMatch(data); //pokemon whole array
-  //           setPokemonSprite(data.sprites.front_default); //pokemon sprite front
-  //           setPokemonName(data.name);
-  //           setPokemonType(fetchTypes.join(" "));
-  //         } else {
-  //           console.log("i am here");
-  //           console.log(`this is the fetchTypes  ${fetchTypes}`);
-  //         }
-  //       }
-
-  //       // setPokemonType(types.join(" ")); // this is so that you can join it in an array
-  //     }
-  //   } catch (error) {
-  //     if (error.name !== "AbortError") {
-  //       console.log(error.message);
-  //     }
-  //   }
-  // };
 
   //getting user profile
   const getProfileInfo = async () => {
@@ -186,51 +146,55 @@ const Display = () => {
         ></UserSelectModal>
       )}
 
-      {/* this is the basic display for the match screen */}
-      {profileDoneLoading && (
-        <div className={styles.profileInfo}>
-          <h3>Welcome User</h3>
-          <ExistingUserSelect
-            userProfile={userProfile}
-            getUserType={getUserType}
-            profileDoneLoading={profileDoneLoading}
-          ></ExistingUserSelect>
+      <div className={styles.topContainer}>
+        {profileDoneLoading && (
+          <div className={styles.profileInfo}>
+            <ExistingUserSelect
+              userProfile={userProfile}
+              getUserType={getUserType}
+              profileDoneLoading={profileDoneLoading}
+            ></ExistingUserSelect>
+          </div>
+        )}
+
+        {/* this is the basic display for the match screen */}
+        <div className={styles.matchScreen}>
+          <img src={pokemonSprite} />
+          <p>{pokemonName}</p>
+          <p>{pokemonType}</p>
+
+          {/* this is the button for liked and DIE */}
+          <br />
+          <br />
+          <img
+            src="https://p1.hiclipart.com/preview/881/990/395/pikachu-crying-pokemon-pikachu-png-clipart.jpg"
+            alt="RUN AWAY button"
+            width="100"
+            onClick={() => {
+              rejected(); // button onClick works
+            }}
+          />
+          <img
+            src="https://www.serebii.net/itemdex/sprites/sv/masterball.png"
+            alt="Masterball Like Button "
+            width="100"
+            onClick={() => {
+              match(); // button onClick works
+            }}
+          />
         </div>
-      )}
-
-      <h3>POKEMON MATCH</h3>
-      <img src={pokemonSprite} />
-      <p>{pokemonName}</p>
-      <p>{pokemonType}</p>
-
-      {/* this is the button for liked and DIE */}
-      <br />
-      <br />
-      <h3>BUTTONS</h3>
-      <img
-        src="https://p1.hiclipart.com/preview/881/990/395/pikachu-crying-pokemon-pikachu-png-clipart.jpg"
-        alt="RUN AWAY button"
-        width="100"
-        onClick={() => {
-          rejected(); // button onClick works
-        }}
-      />
-      <img
-        src="https://www.serebii.net/itemdex/sprites/sv/masterball.png"
-        alt="Masterball Like Button "
-        width="100"
-        onClick={() => {
-          match(); // button onClick works
-        }}
-      />
+      </div>
 
       {/* requires map to map through the stored pokemon matches */}
       <br />
-      <br />
-      <h3>POKEMON PREV MATCHES</h3>
-      {matchedPokemon.map((item, idx) => {
-        return <PrevMatch matchedPokemon={item} key={idx}></PrevMatch>;
-      })}
+      <div className={styles.prevMatchContainer}>
+        <h3>PREV MATCHES</h3>
+        <div className={styles.prevMatch}>
+          {matchedPokemon.map((item, idx) => {
+            return <PrevMatch matchedPokemon={item} key={idx}></PrevMatch>;
+          })}
+        </div>
+      </div>
     </div>
   );
 };

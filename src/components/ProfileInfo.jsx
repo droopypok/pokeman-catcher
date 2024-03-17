@@ -12,9 +12,9 @@ const ProfileInfo = (props) => {
   return (
     <div>
       <img src={displayDataset.fields.pic} alt="" height="200px" />
-      <h2>{displayDataset.fields.name || "Stranger"}</h2>
-      <h2>{displayDataset.fields.region || "Mystery Dungeon"}</h2>
-      <h2>{displayDataset.fields.type}</h2>
+      <h4>{displayDataset.fields.name || "Stranger"}</h4>
+      <h4>{displayDataset.fields.region || "Mystery Dungeon"}</h4>
+      <h4>{displayDataset.fields.type}</h4>
     </div>
   );
 };

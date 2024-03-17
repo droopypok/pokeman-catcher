@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import styles from "./Modal.module.css";
 import ProfileInfo from "./ProfileInfo";
+import styles from "./ExistingUserSelect.module.css";
 
 const ExistingUserSelect = (props) => {
   const [selectedUser, setSelectedUser] = useState(0);
   const profileID = document.getElementById("profileSelect");
 
   return (
-    <div>
+    <>
       <label className={styles.existing}>
-        Select Existing User Profile
+        Select Existing Profiles:
         <select
           id="profileSelect"
           onChange={() => {
@@ -33,7 +33,7 @@ const ExistingUserSelect = (props) => {
           profileDoneLoading={props.profileDoneLoading}
         ></ProfileInfo>
       )}
-    </div>
+    </>
   );
 };
 
