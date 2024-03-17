@@ -1,17 +1,41 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 const Profile = () => {
   const [ppSrc, setPpSrc] = useState("../ProfilePictures/AshPP.png");
+  const [region, setRegion] = useState("");
 
+  const nameRef = useRef("");
+
+  // name fn
+  const username = (e) => {
+    e.preventDefault();
+    console.log(nameRef.current.value);
+    nameRef.current.value = "";
+  };
+
+  // profile picture fn
   const handlePPChange = () => {
     const pp = document.getElementById("profilePicture");
     console.log(pp.value);
     return setPpSrc(pp.value);
   };
 
+  const handleRegionChange = () => {
+    const region = document.getElementById("regionSelect");
+    console.log(region.value);
+    return setRegion(region.value);
+  };
+
   return (
     <div>
-      {/* this is the dropdown to select avatar */}
+      {/* to enter username -- WORKING */}
+      <h3>Enter your name</h3>
+      <form onSubmit={username}>
+        <input type="text" placeholder="Enter your name" ref={nameRef} />
+        <button type="submit">Submit</button>
+      </form>
+
+      {/* this is the dropdown to select avatar -- WORKING */}
       <h1>Select your character:</h1>
       <img src={ppSrc} alt="" height="300px" />
       <form>
@@ -30,9 +54,15 @@ const Profile = () => {
         </select>
       </form>
 
+      {/* selecting region --- WORKING */}
       <h3>Select your region:</h3>
       <form>
-        <select id="regionSelect">
+        <select
+          id="regionSelect"
+          onChange={() => {
+            handleRegionChange();
+          }}
+        >
           <option value="Kanto">Kanto</option>
           <option value="Johto">Johto</option>
           <option value="Hoenn">Hoenn</option>
