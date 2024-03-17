@@ -9,7 +9,7 @@ const NavBar = () => {
           <NavLink to="/">Catch em' All!</NavLink>
         </li>
         <li>
-          <NavLink to="/Profile">Profile</NavLink>
+          <NavLink to="/Profile">Create New Profile</NavLink>
         </li>
       </ul>
     </header>

@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import PrevMatch from "./PrevMatch";
-import Profile from "./Profile";
-import ProfileInfo from "./ProfileInfo";
 import UserSelectModal from "./UserSelectModal";
+import ExistingUserSelect from "./ExistingUserSelect";
+import styles from "./Display.module.css";
 
 const Display = () => {
-  // states
+  // states for match screen
   const [pokemonMatch, setPokemonMatch] = useState([]);
   const [pokemonName, setPokemonName] = useState([]);
   const [pokemonSprite, setPokemonSprite] = useState([]);
   const [pokemonType, setPokemonType] = useState([]);
   const [matchedPokemon, setMatchedPokemon] = useState([]);
+  const [userProfile, setUserProfile] = useState([]);
   const [showModal, setShowModal] = useState(true);
+  const [profileDoneLoading, setProfileDoneLoading] = useState(false);
+  const [apiDoneLoading, setApiDoneLoading] = useState(false);
 
   // random ID for all pokemon list
   const randomPokemonID = Math.floor(Math.random() * 1025);
@@ -57,6 +60,7 @@ const Display = () => {
         setPokemonMatch(data); //pokemon whole array
         setPokemonSprite(data.sprites.front_default); //pokemon sprite front
         setPokemonName(data.name);
+        setApiDoneLoading(true);
 
         const types = data.types.map((items) => {
           return items.type.name;
@@ -71,19 +75,52 @@ const Display = () => {
     }
   };
 
+  //getting user profile
+  const getProfileInfo = async () => {
+    try {
+      const res = await fetch(
+        "https://api.airtable.com/v0/appilxsJRs69yeTn9/Table%201",
+        {
+          method: "GET",
+          headers: {
+            Authorization:
+              "Bearer patxD0v1jlSvjLqBV.f5a593a9bcdb6d61fb435b81e34641d5d7c5b1b73f10c0ab0054a00606e44fe0",
+          },
+        }
+      );
+      if (res.ok) {
+        const data = await res.json();
+        setUserProfile(data.records);
+        setProfileDoneLoading(true);
+      }
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        console.log(error.message);
+      }
+    }
+  };
+
   // EZPZ ON-LOAD completed
   useEffect(() => {
     getPokemon();
+    getProfileInfo();
   }, []);
 
-  return (
-    <>
-      {/* this is the basic display for the match screen */}
-      <ProfileInfo></ProfileInfo>
+  const getModal = (boolean) => {
+    setShowModal(boolean);
+  };
 
-      {showModal && (
-        <UserSelectModal setShowModal={setShowModal}></UserSelectModal>
+  return (
+    <div className={styles.container}>
+      {/* this is the basic display for the match screen */}
+      {profileDoneLoading && apiDoneLoading && (
+        <div className={styles.profileInfo}>
+          <h3>Welcome User</h3>
+          <ExistingUserSelect userProfile={userProfile}></ExistingUserSelect>
+        </div>
       )}
+
+      {showModal && <UserSelectModal getModal={getModal}></UserSelectModal>}
 
       <h3>POKEMON MATCH</h3>
       <img src={pokemonSprite} />
@@ -118,7 +155,7 @@ const Display = () => {
       {matchedPokemon.map((item, idx) => {
         return <PrevMatch matchedPokemon={item} key={idx}></PrevMatch>;
       })}
-    </>
+    </div>
   );
 };
 
