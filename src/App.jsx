@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import Display from "./components/Display";
 import { Route, Routes, Navigate } from "react-router-dom";
 import NavBar from "./components/NavBar";

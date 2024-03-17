@@ -13,7 +13,6 @@ const ExistingUserSelect = (props) => {
 
   return (
     <div>
-      {console.log(selectedUser)}
       <label className={styles.existing}>
         Select Existing User Profile
         <select

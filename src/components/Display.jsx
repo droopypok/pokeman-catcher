@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PrevMatch from "./PrevMatch";
 import UserSelectModal from "./UserSelectModal";
 import ExistingUserSelect from "./ExistingUserSelect";
@@ -12,9 +12,11 @@ const Display = () => {
   const [pokemonType, setPokemonType] = useState([]);
   const [matchedPokemon, setMatchedPokemon] = useState([]);
   const [userProfile, setUserProfile] = useState([]);
-  const [showModal, setShowModal] = useState(true);
   const [profileDoneLoading, setProfileDoneLoading] = useState(false);
   const [apiDoneLoading, setApiDoneLoading] = useState(false);
+
+  const [showModal, setShowModal] = useState(true);
+  const [existingUser, setExistingUser] = useState();
 
   // random ID for all pokemon list
   const randomPokemonID = Math.floor(Math.random() * 1025);
@@ -104,14 +106,18 @@ const Display = () => {
   useEffect(() => {
     getPokemon();
     getProfileInfo();
+    setExistingUser(sessionStorage.getItem("isUser"));
   }, []);
-
-  const getModal = (boolean) => {
-    setShowModal(boolean);
-  };
 
   return (
     <div className={styles.container}>
+      {showModal && !existingUser && (
+        <UserSelectModal
+          setShowModal={setShowModal}
+          existingUser={setExistingUser}
+        ></UserSelectModal>
+      )}
+
       {/* this is the basic display for the match screen */}
       {profileDoneLoading && apiDoneLoading && (
         <div className={styles.profileInfo}>
@@ -119,8 +125,6 @@ const Display = () => {
           <ExistingUserSelect userProfile={userProfile}></ExistingUserSelect>
         </div>
       )}
-
-      {showModal && <UserSelectModal getModal={getModal}></UserSelectModal>}
 
       <h3>POKEMON MATCH</h3>
       <img src={pokemonSprite} />
