@@ -11,6 +11,11 @@ const OverLay = (props) => {
     sessionStorage.setItem("isUser", "true");
   };
 
+  const createNewUser = () => {
+    navigate("/profile");
+    sessionStorage.setItem("isUser", "true");
+  };
+
   return (
     <div className={styles.backdrop}>
       <div className={styles.modal}>
@@ -19,14 +24,12 @@ const OverLay = (props) => {
           <img src="../ProfilePictures/pokeman.png" alt="" />
         </div>
         <div className={styles.container}>
-          <div>
-            <button
-              className={styles.newUser}
-              onClick={() => navigate("/profile")}
-            >
+          <div className={styles.button}>
+            <button className={styles.newUser} onClick={() => createNewUser()}>
               Create New User
             </button>
             <button
+              className={styles.newUser}
               onClick={() => {
                 removeModal();
               }}

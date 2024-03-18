@@ -9,9 +9,10 @@ const ExistingUserSelect = (props) => {
   return (
     <>
       <label className={styles.existing}>
-        Select Existing Profiles:
+        <span className={styles.selectLabel}>Select Existing Profiles:</span>
         <br />
         <select
+          className={styles.userSelect}
           id="profileSelect"
           onChange={() => {
             setSelectedUser(profileID.value);
@@ -26,6 +27,7 @@ const ExistingUserSelect = (props) => {
           })}
         </select>
       </label>
+
       {props.profileDoneLoading && (
         <ProfileInfo
           selectedUser={selectedUser}

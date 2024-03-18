@@ -11,8 +11,6 @@
 .modal {
   position: fixed;
   background: white;
-  top: 10vh;
-  bottom: 20vh;
   left: 10%;
   width: 80%;
   z-index: 100;
@@ -39,6 +37,14 @@
 .newUser {
   border-radius: 50px;
   padding: 10px;
+  display: flex;
+  width: 20vw;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.newUser:hover {
+  scale: 1.2;
 }
 
 .newUserLink {

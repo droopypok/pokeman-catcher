@@ -5,9 +5,15 @@
   justify-content: center;
   gap: 100px;
   padding: 10px;
+  margin-bottom: 60px;
 }
 
 .link {
   text-decoration: none;
   color: #463f3a;
+}
+
+.logo {
+  position: absolute;
+  scale: 70%;
 }

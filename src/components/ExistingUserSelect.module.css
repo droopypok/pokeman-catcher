@@ -3,3 +3,11 @@
   flex-direction: row;
   width: 30%;
 }
+
+.selectLabel {
+  font-size: 20px;
+}
+
+.userSelect {
+  text-align: center;
+}

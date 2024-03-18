@@ -12,18 +12,20 @@ const Display = () => {
   const [pokemonType, setPokemonType] = useState([]);
   const [matchedPokemon, setMatchedPokemon] = useState([]);
   const [userProfile, setUserProfile] = useState([]);
+
+  // for modal
+  const [showModal, setShowModal] = useState(true);
+  const [existingUser, setExistingUser] = useState();
+
+  //for loading
   const [profileDoneLoading, setProfileDoneLoading] = useState(false);
   const [apiDoneLoading, setApiDoneLoading] = useState(false);
 
-  const [showModal, setShowModal] = useState(true);
-  const [existingUser, setExistingUser] = useState();
+  //for randompokemongenerator
   const [selectedType, setSelectedType] = useState("");
-
-  const [test, setTest] = useState([]);
   const [randomPokemon, setRandomPokemon] = useState("");
 
   // random ID for all pokemon list
-  const randomPokemonID = Math.floor(Math.random() * 1025);
 
   // Function for like button
   const match = () => {
@@ -80,7 +82,6 @@ const Display = () => {
       );
       if (res.ok) {
         const data = await res.json();
-        setTest(data);
         const randomLength = Math.floor(Math.random() * data.pokemon.length); //pokemon whole array
         setRandomPokemon(data.pokemon[randomLength].pokemon.url);
 
@@ -138,74 +139,76 @@ const Display = () => {
   }, [randomPokemon]);
 
   return (
-    <div className={styles.container}>
-      {showModal && !existingUser && (
-        <UserSelectModal
-          setShowModal={setShowModal}
-          existingUser={setExistingUser}
-        ></UserSelectModal>
-      )}
-
-      <div className={styles.topContainer}>
-        {profileDoneLoading && (
-          <div className={styles.profileInfo}>
-            <ExistingUserSelect
-              userProfile={userProfile}
-              getUserType={getUserType}
-              profileDoneLoading={profileDoneLoading}
-            ></ExistingUserSelect>
-          </div>
+    <>
+      <div className={styles.container}>
+        {showModal && !existingUser && (
+          <UserSelectModal
+            setShowModal={setShowModal}
+            existingUser={setExistingUser}
+          ></UserSelectModal>
         )}
 
-        {/* this is the basic display for the match screen */}
-        <div className={styles.matchScreen}>
-          <div className={styles.matchInfo}>
-            <img
-              className={styles.pokemonSprite}
-              src={pokemonSprite}
-              width="300"
-            />
-            <h3>{pokemonName}</h3>
-            <h3>{pokemonType}</h3>
-          </div>
-          {/* this is the button for liked and DIE */}
-          <br />
-          <br />
-          <div className={styles.buttons}>
-            <img
-              className={styles.runaway}
-              src="../ProfilePictures/runaway.png"
-              alt="RUN AWAY button"
-              width="250px"
-              onClick={() => {
-                rejected(); // button onClick works
-              }}
-            />
-            <img
-              className={styles.match}
-              src="../ProfilePictures/masterball.png"
-              alt="Masterball Like Button "
-              onClick={() => {
-                match(); // button onClick works
-              }}
-            />
-          </div>
-        </div>
-      </div>
+        <div className={styles.topContainer}>
+          {profileDoneLoading && (
+            <div className={styles.profileInfo}>
+              <ExistingUserSelect
+                userProfile={userProfile}
+                getUserType={getUserType}
+                profileDoneLoading={profileDoneLoading}
+              ></ExistingUserSelect>
+            </div>
+          )}
 
-      {/* requires map to map through the stored pokemon matches */}
-      <br />
-      <div className={styles.prevMatchContainer}>
-        <div>
-          <h3>PREV MATCHES</h3>
+          {/* this is the basic display for the match screen */}
+          <div className={styles.matchScreen}>
+            <div className={styles.matchInfo}>
+              <img
+                className={styles.pokemonSprite}
+                src={pokemonSprite}
+                width="300"
+              />
+              <h3>{pokemonName}</h3>
+              <h3>{pokemonType}</h3>
+            </div>
+            {/* this is the button for liked and DIE */}
+            <br />
+            <br />
+            <div className={styles.buttons}>
+              <img
+                className={styles.runaway}
+                src="../ProfilePictures/runaway.png"
+                alt="RUN AWAY button"
+                width="250px"
+                onClick={() => {
+                  rejected(); // button onClick works
+                }}
+              />
+              <img
+                className={styles.match}
+                src="../ProfilePictures/masterball.png"
+                alt="Masterball Like Button "
+                onClick={() => {
+                  match(); // button onClick works
+                }}
+              />
+            </div>
+          </div>
         </div>
-        <div className={styles.prevMatch}>
-          {matchedPokemon.map((item, idx) => {
-            return <PrevMatch matchedPokemon={item} key={idx}></PrevMatch>;
-          })}
+
+        {/* requires map to map through the stored pokemon matches */}
+        <br />
+        <div className={styles.prevMatchContainer}>
+          <div>
+            <h3>PREV MATCHES</h3>
+          </div>
+          <div className={styles.prevMatch}>
+            {matchedPokemon.map((item, idx) => {
+              return <PrevMatch matchedPokemon={item} key={idx}></PrevMatch>;
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

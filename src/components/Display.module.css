@@ -20,16 +20,17 @@
   border-radius: 40px;
   margin-left: 30px;
   width: 300px;
+  scale: 90%;
 }
 
 .prevMatchContainer {
   margin-left: 30px;
-  margin-top: 10px;
 }
 .prevMatch {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  text-align: center;
 }
 
 .matchScreen {
@@ -39,8 +40,9 @@
   justify-content: center;
   align-items: center;
   width: 500px;
-  height: 350px;
+  height: 30vh;
   border-radius: 50px;
+  scale: 80%;
 }
 
 .matchInfo {
@@ -51,6 +53,10 @@
   padding: 0 50px;
   background-color: #e0afa0;
   border-radius: 50px;
+}
+
+.pokemonSprite {
+  scale: 80%;
 }
 
 .pokemonSprite:hover {
