@@ -25,8 +25,6 @@ const Display = () => {
   const [selectedType, setSelectedType] = useState("");
   const [randomPokemon, setRandomPokemon] = useState("");
 
-  // random ID for all pokemon list
-
   // Function for like button
   const match = () => {
     const matchedData = { pokemonName, pokemonSprite, pokemonType };
@@ -98,7 +96,7 @@ const Display = () => {
     return setSelectedType(type);
   };
 
-  //getting user profile
+  //getting user profile from airtable
   const getProfileInfo = async () => {
     try {
       const res = await fetch(
@@ -126,14 +124,15 @@ const Display = () => {
   // EZPZ ON-LOAD completed
   useEffect(() => {
     getProfileInfo();
-
-    setExistingUser(sessionStorage.getItem("isUser"));
+    setExistingUser(sessionStorage.getItem("isUser")); //store in session storage
   }, []);
 
+  // once profile changes, looks for new pokemon type matching user type
   useEffect(() => {
     getPokemonType();
   }, [selectedType]);
 
+  // once state change fetches pokemon
   useEffect(() => {
     getPokemon();
   }, [randomPokemon]);
@@ -160,6 +159,7 @@ const Display = () => {
           )}
 
           {/* this is the basic display for the match screen */}
+
           <div className={styles.matchScreen}>
             <div className={styles.matchInfo}>
               <img

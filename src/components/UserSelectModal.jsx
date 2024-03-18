@@ -4,7 +4,7 @@ import styles from "./Modal.module.css";
 import { useNavigate } from "react-router-dom";
 
 const OverLay = (props) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // to navigate to profile
 
   const removeModal = () => {
     props.setShowModal(false);

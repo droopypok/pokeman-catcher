@@ -7,11 +7,12 @@ const Profile = () => {
   const [name, setName] = useState(""); // used for displaying name data
   const [region, setRegion] = useState("Kanto");
   const [selectType, setSelectType] = useState("");
+  const splitTypes = selectType.toString(); // cannot store object in airtable
 
   const nameRef = useRef(""); // used to store name data first
+  const navigate = useNavigate(); // brings back to homepage
 
-  const splitTypes = selectType.toString();
-  console.log(splitTypes);
+  // console.log(splitTypes);
 
   // name Fn
   const username = (e) => {
@@ -20,17 +21,17 @@ const Profile = () => {
     nameRef.current.value = "";
   };
 
-  // profile picture Fn
+  // profile picture Fn WORKING
   const handlePPChange = () => {
     const pp = document.getElementById("profilePicture");
     console.log(pp.value);
     return setPpSrc(pp.value);
   };
 
-  // region select Fn
+  // region select Fn -- WORKING
   const handleRegionChange = () => {
     const region = document.getElementById("regionSelect");
-    console.log(region.value);
+    // console.log(region.value);
     return setRegion(region.value);
   };
 
@@ -71,7 +72,6 @@ const Profile = () => {
     }
   };
 
-  const navigate = useNavigate();
   // submit button to submit everything to airtable
   const handleSubmitButton = (e) => {
     if (name && ppSrc && region && splitTypes) {
@@ -105,10 +105,10 @@ const Profile = () => {
       {/* this is the dropdown to select avatar -- WORKING */}
       <div className={styles.avatar}>
         <h1 className={styles.title}>
-          Select your character:{" "}
+          Select your character:
           <span>
             <h1 className={styles.title}>{name}</h1>
-          </span>{" "}
+          </span>
         </h1>
         <img src={ppSrc} alt="" height="300px" />
         <form>

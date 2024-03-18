@@ -36,13 +36,13 @@
 .matchScreen {
   display: flex;
   flex-direction: column;
-  margin: 80px 10px 0 10px;
+  margin: 70px 10px 0 10px;
   justify-content: center;
   align-items: center;
-  width: 500px;
+  width: 50px;
   height: 30vh;
   border-radius: 50px;
-  scale: 80%;
+  scale: 70%;
 }
 
 .matchInfo {
