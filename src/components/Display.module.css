@@ -18,13 +18,42 @@
   align-items: center;
   text-align: center;
   border-radius: 40px;
+  margin-left: 30px;
 }
 
 .prevMatchContainer {
-  margin: 10px;
+  margin-left: 30px;
+  margin-top: 10px;
 }
 .prevMatch {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+
+.matchScreen {
+  display: flex;
+  flex-direction: column;
+  margin: 80px 10px 0 10px;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 350px;
+  border-radius: 50px;
+}
+
+.matchInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  padding: 0 50px 20px 50px;
+  background-color: #e0afa0;
+  border-radius: 50px;
+}
+
+.buttons {
+  display: flex;
+  margin-bottom: 50px;
+  gap: 100px;
 }

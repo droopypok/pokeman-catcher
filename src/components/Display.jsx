@@ -159,36 +159,41 @@ const Display = () => {
 
         {/* this is the basic display for the match screen */}
         <div className={styles.matchScreen}>
-          <img src={pokemonSprite} />
-          <p>{pokemonName}</p>
-          <p>{pokemonType}</p>
-
+          <div className={styles.matchInfo}>
+            <img src={pokemonSprite} width="300" />
+            <h3>{pokemonName}</h3>
+            <h3>{pokemonType}</h3>
+          </div>
           {/* this is the button for liked and DIE */}
           <br />
           <br />
-          <img
-            src="https://p1.hiclipart.com/preview/881/990/395/pikachu-crying-pokemon-pikachu-png-clipart.jpg"
-            alt="RUN AWAY button"
-            width="100"
-            onClick={() => {
-              rejected(); // button onClick works
-            }}
-          />
-          <img
-            src="https://www.serebii.net/itemdex/sprites/sv/masterball.png"
-            alt="Masterball Like Button "
-            width="100"
-            onClick={() => {
-              match(); // button onClick works
-            }}
-          />
+          <div className={styles.buttons}>
+            <img
+              src="../ProfilePictures/runaway.png"
+              alt="RUN AWAY button"
+              width="300"
+              onClick={() => {
+                rejected(); // button onClick works
+              }}
+            />
+            <img
+              src="../ProfilePictures/masterball.png"
+              alt="Masterball Like Button "
+              width="150"
+              onClick={() => {
+                match(); // button onClick works
+              }}
+            />
+          </div>
         </div>
       </div>
 
       {/* requires map to map through the stored pokemon matches */}
       <br />
       <div className={styles.prevMatchContainer}>
-        <h3>PREV MATCHES</h3>
+        <div>
+          <h3>PREV MATCHES</h3>
+        </div>
         <div className={styles.prevMatch}>
           {matchedPokemon.map((item, idx) => {
             return <PrevMatch matchedPokemon={item} key={idx}></PrevMatch>;
