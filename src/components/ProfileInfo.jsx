@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Profile.module.css";
 
 const ProfileInfo = (props) => {
   const displayDataset = props.userProfile[props.selectedUser];
@@ -11,7 +12,12 @@ const ProfileInfo = (props) => {
 
   return (
     <div>
-      <img src={displayDataset.fields.pic} alt="" height="200px" />
+      <img
+        className={styles.userAvatar}
+        src={displayDataset.fields.pic}
+        alt=""
+        height="200px"
+      />
       <h4>{displayDataset.fields.name || "Stranger"}</h4>
       <h4>{displayDataset.fields.region || "Mystery Dungeon"}</h4>
       <h4>{displayDataset.fields.type}</h4>

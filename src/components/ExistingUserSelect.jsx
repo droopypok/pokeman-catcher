@@ -10,6 +10,7 @@ const ExistingUserSelect = (props) => {
     <>
       <label className={styles.existing}>
         Select Existing Profiles:
+        <br />
         <select
           id="profileSelect"
           onChange={() => {

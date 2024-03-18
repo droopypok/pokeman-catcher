@@ -1,4 +1,41 @@
-.profileInfoContainer {
+.userAvatar:hover {
+  scale: 1.5;
+}
+
+.container {
+  margin: 3rem auto;
+  text-align: center;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  background-color: #e0afa0;
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
+.typeImg {
+  display: flex;
+  scale: 100%;
+}
+
+.button {
+  padding: 50px 100px;
+  font-size: 30px;
+  border-radius: 50px;
+}
+
+.selectAvatar {
+  margin-top: 50px;
+  font-size: 40px;
+  text-align: center;
+}
+
+.title {
+  font-size: 60px;
+  padding-bottom: 50px;
+}
+
+.inputName {
+  font-size: 20px;
 }

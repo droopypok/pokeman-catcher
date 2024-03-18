@@ -160,7 +160,11 @@ const Display = () => {
         {/* this is the basic display for the match screen */}
         <div className={styles.matchScreen}>
           <div className={styles.matchInfo}>
-            <img src={pokemonSprite} width="300" />
+            <img
+              className={styles.pokemonSprite}
+              src={pokemonSprite}
+              width="300"
+            />
             <h3>{pokemonName}</h3>
             <h3>{pokemonType}</h3>
           </div>
@@ -169,17 +173,18 @@ const Display = () => {
           <br />
           <div className={styles.buttons}>
             <img
+              className={styles.runaway}
               src="../ProfilePictures/runaway.png"
               alt="RUN AWAY button"
-              width="300"
+              width="250px"
               onClick={() => {
                 rejected(); // button onClick works
               }}
             />
             <img
+              className={styles.match}
               src="../ProfilePictures/masterball.png"
               alt="Masterball Like Button "
-              width="150"
               onClick={() => {
                 match(); // button onClick works
               }}
