@@ -1,6 +1,6 @@
 # PokeMAN
 
-Are you tired of being rejected everytime you are on a dating app? Fret not! You can now "Catch em' All" in this new PokeMAN dating-app inspired webapp. Choose your favourite type and start swiping all of the available pokeMANs out there waiting for you. 
+Are you tired of being rejected every single time you are on a dating app? Fret not! You can now "Catch em' All" in this new PokeMAN dating-app inspired webapp. Choose your favourite type and start swiping all of the available pokeMANs out there waiting for you. 
 
 # Screenshot
 1. Welcome screen
