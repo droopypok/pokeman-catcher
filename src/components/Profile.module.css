@@ -1,3 +1,7 @@
+.userAvatar {
+  margin-bottom: 20px;
+}
+
 .userAvatar:hover {
   scale: 1.5;
 }

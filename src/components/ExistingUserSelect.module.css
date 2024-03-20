@@ -10,4 +10,14 @@
 
 .userSelect {
   text-align: center;
+  margin-top: 10px;
+  font-size: 20px;
+  padding: 0 40px;
+}
+
+.userProfile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
 }

@@ -5,7 +5,7 @@ import ExistingUserSelect from "./ExistingUserSelect";
 import styles from "./Display.module.css";
 
 const Display = () => {
-  // states for match screen
+  // states for match screen±
   const [pokemonMatch, setPokemonMatch] = useState([]);
   const [pokemonName, setPokemonName] = useState([]);
   const [pokemonSprite, setPokemonSprite] = useState([]);
@@ -161,50 +161,50 @@ const Display = () => {
           {/* this is the basic display for the match screen */}
 
           <div className={styles.matchScreen}>
-            <div className={styles.matchInfo}>
-              <img
-                className={styles.pokemonSprite}
-                src={pokemonSprite}
-                width="300"
-              />
-              <h3>{pokemonName}</h3>
-              <h3>{pokemonType}</h3>
-            </div>
-            {/* this is the button for liked and DIE */}
-            <br />
-            <br />
-            <div className={styles.buttons}>
-              <img
-                className={styles.runaway}
-                src="../ProfilePictures/runaway.png"
-                alt="RUN AWAY button"
-                width="250px"
-                onClick={() => {
-                  rejected(); // button onClick works
-                }}
-              />
-              <img
-                className={styles.match}
-                src="../ProfilePictures/masterball.png"
-                alt="Masterball Like Button "
-                onClick={() => {
-                  match(); // button onClick works
-                }}
-              />
+            <div className={styles.matchScreenContainer}>
+              <div className={styles.matchInfo}>
+                <img
+                  className={styles.pokemonSprite}
+                  src={pokemonSprite}
+                  width="300"
+                />
+                <h3>{pokemonName}</h3>
+                <h3>{pokemonType}</h3>
+              </div>
+              {/* this is the button for liked and DIE */}
+              <div className={styles.buttons}>
+                <img
+                  className={styles.runaway}
+                  src="../ProfilePictures/runaway.png"
+                  alt="RUN AWAY button"
+                  onClick={() => {
+                    rejected(); // button onClick works
+                  }}
+                />
+                <img
+                  className={styles.match}
+                  src="../ProfilePictures/masterball.png"
+                  alt="Masterball Like Button "
+                  onClick={() => {
+                    match(); // button onClick works
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
 
         {/* requires map to map through the stored pokemon matches */}
-        <br />
-        <div className={styles.prevMatchContainer}>
-          <div>
-            <h3>PREV MATCHES</h3>
-          </div>
-          <div className={styles.prevMatch}>
-            {matchedPokemon.map((item, idx) => {
-              return <PrevMatch matchedPokemon={item} key={idx}></PrevMatch>;
-            })}
+        <div className={styles.prevMatchDiv}>
+          <div className={styles.prevMatchContainer}>
+            <div className={styles.prevMatchHeading}>
+              <h3>PREV MATCHES</h3>
+            </div>
+            <div className={styles.prevMatch}>
+              {matchedPokemon.map((item, idx) => {
+                return <PrevMatch matchedPokemon={item} key={idx}></PrevMatch>;
+              })}
+            </div>
           </div>
         </div>
       </div>

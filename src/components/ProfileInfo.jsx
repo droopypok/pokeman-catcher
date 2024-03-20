@@ -6,7 +6,7 @@ const ProfileInfo = (props) => {
   props.getUserType(displayDataset.fields.type);
 
   return (
-    <div>
+    <div className={styles.userContainer}>
       <img
         className={styles.userAvatar}
         src={displayDataset.fields.pic}

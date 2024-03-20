@@ -4,10 +4,11 @@
 
 .topContainer {
   display: flex;
-  height: 60vh;
-  justify-content: start;
-  gap: 400px;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
 }
+
 .profileInfo {
   display: flex;
   flex-direction: column;
@@ -18,14 +19,15 @@
   align-items: center;
   text-align: center;
   border-radius: 40px;
-  margin-left: 30px;
-  width: 300px;
-  scale: 90%;
+  margin: 0 30px;
+  width: 20vw;
 }
 
 .prevMatchContainer {
-  margin-left: 30px;
+  margin-left: 60px;
+  margin-top: 40px;
 }
+
 .prevMatch {
   display: flex;
   flex-direction: row;
@@ -36,36 +38,39 @@
 .matchScreen {
   display: flex;
   flex-direction: column;
-  margin: 70px 10px 0 10px;
-  justify-content: center;
   align-items: center;
-  width: 50px;
-  height: 30vh;
+  margin-right: 10vw;
+}
+
+.matchScreenContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #463f3a;
   border-radius: 50px;
-  scale: 70%;
+  color: #f4f3ee;
 }
 
 .matchInfo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
-  padding: 0 50px;
-  background-color: #e0afa0;
-  border-radius: 50px;
-}
-
-.pokemonSprite {
-  scale: 80%;
 }
 
 .pokemonSprite:hover {
-  scale: 1.3;
+  scale: 1.2;
 }
+
 .buttons {
   display: flex;
-  margin-bottom: 50px;
-  gap: 200px;
+  justify-content: space-evenly;
+  padding: 30px 0;
+}
+
+.runaway {
+  border-radius: 50px;
+  max-width: 30%;
 }
 
 .match:hover {
